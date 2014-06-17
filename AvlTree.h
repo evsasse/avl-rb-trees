@@ -6,7 +6,6 @@ using std::string;
 
 template <typename T>
 class AvlTree {
-
     struct Node {
         Node *left, *right;
         T data;
