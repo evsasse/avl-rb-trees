@@ -6,6 +6,7 @@ using std::string;
 
 template <typename T>
 class AvlTree {
+    public:
     struct Node {
         Node *left, *right;
         T data;
@@ -85,14 +86,16 @@ public:
         root = remove(t, root);
     }
 
-    string toString() {
+    string toString() {//works for <char>
         return root->toString();
     }
 private:
     Node* root;
+    int size;
 
     Node* insert(const T& t, Node* root) {
         if (root == 0) {
+            ++size;
             return new Node(t);
         }
         if (t < root->data) {//left
@@ -123,6 +126,7 @@ private:
         else if(t > root->data) //right
             root->right = remove(t, root->right);
         else{//delete root
+            --size;
             if(root->left == 0 && root->right == 0){//no child
                 delete root;
                 return 0;
